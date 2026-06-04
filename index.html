@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ζωή Ασμάνογλου - Ψυχολόγος & Συστημική Ψυχοθεραπεύτρια</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables based on exact instructions */
+        :root {
+            --bg-color: #F8F5EF;       /* Background γενικά */
+            --green-section: #8A9580;  /* Μεγάλα πράσινα sections/footer */
+            --beige-card: #EAE5DB;     /* Κάρτες / ενδιάμεσα sections */
+            --btn-color: #B18363;      /* Accent brown (κουμπιά / λεπτομέρειες) */
+            --text-color: #564C45;     /* Κείμενα */
+            --lines-color: #BDA792;    /* Διακοσμητικές organic γραμμές */
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: var(--font-body);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            color: var(--text-color);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 20px;
+            font-weight: 300;
+            font-size: 1.05rem;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--btn-color);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--lines-color);
+        }
+        .btn-outline:hover {
+            background-color: var(--lines-color);
+            color: #fff;
+        }
+
+        /* Organic Shapes (Blobs) */
+        .blob-bg {
+            position: absolute;
+            z-index: 0;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+        .blob-img {
+            border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        /* Navigation */
+        nav {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+        .logo img {
+            max-height: 70px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            color: var(--btn-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 80px 0 120px;
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+        }
+        .hero .blob-1 {
+            background-color: var(--green-section);
+            width: 600px;
+            height: 600px;
+            top: -100px;
+            right: -200px;
+            opacity: 0.5;
+            z-index: 0;
+        }
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-text h1 {
+            font-size: 3.2rem;
+            margin-bottom: 25px;
+        }
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: var(--text-color);
+        }
+        .hero-image {
+            position: relative;
+            text-align: center;
+        }
+        .hero-image img {
+            width: 100%;
+            max-width: 450px;
+            height: 550px;
+        }
+        
+        /* Services Section */
+        .services-section {
+            background-color: var(--beige-card);
+            padding: 100px 0;
+            text-align: center;
+        }
+        .services-section > h2 {
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            margin-bottom: 60px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        .service-card {
+            padding: 20px;
+        }
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            border: 1px solid var(--lines-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .service-icon svg {
+            width: 35px;
+            height: 35px;
+            fill: var(--text-color);
+        }
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
+
+        /* Approach / About Section */
+        .approach-section {
+            padding: 120px 0;
+            position: relative;
+        }
+        .approach-section .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .approach-section .blob-2 {
+            background-color: var(--green-section);
+            width: 400px;
+            height: 400px;
+            left: -100px;
+            top: 20%;
+            opacity: 0.6;
+            z-index: -1;
+        }
+        .approach-section .blob-3 {
+            background-color: var(--beige-card);
+            width: 300px;
+            height: 300px;
+            left: 200px;
+            bottom: -50px;
+            opacity: 0.8;
+            z-index: -1;
+        }
+        .approach-image img {
+            width: 100%;
+            max-width: 450px;
+            height: 550px;
+        }
+        .approach-text h4 {
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .approach-text h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+        }
+
+        /* Hidden Network (Collage Section) */
+        .hidden-network {
+            background-color: var(--beige-card);
+            padding: 120px 0;
+        }
+        .network-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .network-collage {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .network-collage img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+        .network-collage img:nth-child(1) {
+            grid-column: span 2;
+            height: 300px;
+            border-radius: 50% 30% 60% 40% / 40% 60% 40% 50%;
+        }
+
+        /* Reviews Section (Vertical Marquee) */
+        .reviews-section {
+            padding: 100px 0;
+            background-color: var(--bg-color);
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .reviews-text h2 {
+            font-size: 3rem;
+        }
+        .scroller-container {
+            height: 600px;
+            overflow: hidden;
+            position: relative;
+            /* Gradient mask for smooth fade out at top and bottom */
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+        }
+        .scroller-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            animation: scroll-vertical 40s linear infinite;
+        }
+        .scroller-container:hover .scroller-inner {
+            animation-play-state: paused;
+        }
+        @keyframes scroll-vertical {
+            from { transform: translateY(0); }
+            to { transform: translateY(-50%); }
+        }
+        .review-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid rgba(189, 167, 146, 0.2);
+        }
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        .review-name {
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: var(--btn-color);
+        }
+        .review-count {
+            font-size: 0.8rem;
+            color: #888;
+            font-weight: 300;
+            margin-left: 8px;
+        }
+        .review-rating {
+            background-color: var(--green-section);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .review-text {
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        .review-date {
+            font-size: 0.8rem;
+            color: #aaa;
+            text-align: right;
+        }
+
+        /* Contact & Footer */
+        .footer-section {
+            background-color: var(--green-section);
+            color: #fff;
+            padding: 80px 0 40px;
+        }
+        .footer-section h2, .footer-section h4, .footer-section p {
+            color: #fff;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        .contact-info h4 {
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .contact-info h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .contact-details {
+            margin-top: 40px;
+            font-weight: 300;
+        }
+        .contact-details p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        /* Form */
+        .contact-form {
+            background: transparent;
+        }
+        .form-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .form-input {
+            width: 100%;
+            padding: 16px;
+            border-radius: 4px;
+            border: none;
+            background-color: #fff;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
+        .form-input::placeholder {
+            color: #aaa;
+        }
+        textarea.form-input {
+            height: 150px;
+            resize: none;
+            margin-bottom: 20px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero .container, .approach-section .container, .network-container, .reviews-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            .nav-links {
+                display: none; /* Hide on mobile for simplicity, or implement a hamburger menu */
+            }
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            .scroller-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <a href="#" class="logo">
+                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/ASLOGO.jpg" alt="Ζωή Ασμάνογλου - Ψυχολόγος">
+            </a>
+            <div class="nav-links">
+                <a href="#home">ΑΡΧΙΚΗ</a>
+                <a href="#about">ΣΧΕΤΙΚΑ</a>
+                <a href="#services">ΥΠΗΡΕΣΙΕΣ</a>
+                <a href="#approach">ΠΡΟΣΕΓΓΙΣΗ</a>
+                <a href="#contact">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+            </div>
+            <a href="#contact" class="btn">Κλείστε ραντεβού</a>
+        </nav>
+    </div>
+
+    <section class="hero" id="home">
+        <div class="blob-bg blob-1"></div>
+        <div class="container">
+            <div class="hero-text">
+                <h1>Συστημική Ψυχοθεραπεία & Ειδική Αγωγή: Ανακαλύπτοντας την Ισορροπία μέσα στις Σχέσεις</h1>
+                <p>Η Ζωή Ασμάνογλου είναι αδειούχος Ψυχολόγος (Αρ. Αδείας: 16714) και Συστημική Ψυχοθεραπεύτρια, διατηρώντας το ιδιωτικό της γραφείο στο Κουκάκι.</p>
+                <a href="#contact" class="btn">Κλείστε ένα πρώτο ραντεβού</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/as.jpg" alt="Ζωή Ασμάνογλου" class="blob-img">
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <div class="container">
+            <h2>ΥΠΗΡΕΣΙΕΣ</h2>
+            <div class="services-grid">
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <h3>Ατομική Ψυχοθεραπεία Ενηλίκων & Αυτογνωσία</h3>
+                    <p>Όταν το άγχος, οι απαιτήσεις των πολλαπλών ρόλων ή μια αίσθηση στασιμότητας δυσκολεύουν την καθημερινότητα, η ατομική συστημική θεραπεία προσφέρει μια νέα προοπτική. Στόχος η προσωπική ενδυνάμωση και η διαμόρφωση μιας ικανοποιητικής καθημερινότητας.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    </div>
+                    <h3>Συστημική Θεραπεία Ζεύγους & Οικογενειακές Δυναμικές</h3>
+                    <p>Οι σχέσεις μας είναι ζωντανός οργανισμός. Προσφέρεται ένας ασφαλής χώρος για την αποκωδικοποίηση μοτίβων συγκρούσεων. Μέσω της Συμβουλευτικής Γονέων, υποστηρίζουμε τη διαχείριση της καθημερινότητας και την ενίσχυση της επικοινωνίας.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61l-1.66 4.97c-.15.46.3.89.75.72l4.89-1.89C10.21 21.8 11.08 22 12 22c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 17c-.82 0-1.6-.14-2.34-.39-.23-.08-.48-.09-.72-.03l-3.32 1.28 1.12-3.36c.07-.22.04-.47-.09-.67-1.04-1.45-1.65-3.23-1.65-5.13 0-3.86 3.14-7 7-7s7 3.14 7 7-3.14 7-7 7z"/><path d="M11 8h2v5h-2zm0 6h2v2h-2z"/></svg>
+                    </div>
+                    <h3>Ψυχοθεραπεία Παιδιών, Εφήβων & Σχολική Ψυχολογία</h3>
+                    <p>Η συμπεριφορά δεν είναι "πρόβλημα", αλλά μήνυμα που χρειάζεται κατανόηση. Αντιμετωπίζουμε ζητήματα σχολικού άγχους και αναπτυξιακών ιδιαιτεροτήτων, χτίζοντας την αυτοεκτίμηση του παιδιού με απόλυτο σεβασμό.</p>
+                </div>
+
+            </div>
+            <a href="#services" class="btn btn-outline">Δείτε όλες τις υπηρεσίες</a>
+        </div>
+    </section>
+
+    <section class="approach-section" id="approach">
+        <div class="blob-bg blob-2"></div>
+        <div class="blob-bg blob-3"></div>
+        <div class="container">
+            <div class="approach-image">
+                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/as5.jpg" alt="Η Προσέγγισή μου" class="blob-img">
+            </div>
+            <div class="approach-text">
+                <h4>Η ΠΡΟΣΕΓΓΙΣΗ ΜΟΥ</h4>
+                <h2>Συστημική προσέγγιση με επίκεντρο τον άνθρωπο.</h2>
+                <p>Ολοκλήρωσε τις προπτυχιακές της σπουδές στο Τμήμα Ψυχολογίας του Εθνικού και Καποδιστριακού Πανεπιστημίου Αθηνών (ΕΚΠΑ) και, αναγνωρίζοντας τη σημασία της ολιστικής κατανόησης των αναπτυξιακών προκλήσεων, απέκτησε Μεταπτυχιακό Δίπλωμα Ειδίκευσης στην Ειδική Αγωγή από το Παιδαγωγικό Τμήμα Δημοτικής Εκπαίδευσης.</p>
+                <p>Η κλινική της ταυτότητα βασίζεται στη Συστημική προσέγγιση. Έλαβε την ολοκληρωμένη ψυχοθεραπευτική της εκπαίδευση από την Εταιρία Συστημικής Θεραπείας και Παρέμβασης (ΕΣΥΘΕΠΑΣ).</p>
+                <p>Σήμερα, στο ιδιωτικό της γραφείο, συνδυάζει την επιστημονική της γνώση με μια βαθιά ανθρωποκεντρική στάση, προσφέροντας ατομικές συνεδρίες για παιδιά, εφήβους και ενήλικες, καθώς και εξειδικευμένη θεραπεία ζεύγους.</p>
+                <a href="#about" class="btn btn-outline" style="margin-top: 20px;">Περισσότερα για εμένα</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="hidden-network">
+        <div class="container network-container">
+            <div class="network-text">
+                <h2>Το "Κρυφό Δίκτυο" της Ανάπτυξης: Γιατί Κανένα Σύμπτωμα Δεν Γεννιέται Μόνο του</h2>
+                <p>Στην κλινική μου πρακτική, πολύ συχνά με επισκέπτονται γονείς ανησυχώντας για μια ξαφνική αλλαγή στη συμπεριφορά του παιδιού τους, ή ενήλικες που νιώθουν εγκλωβισμένοι σε ένα έντονο, ανεξήγητο άγχος. Η δική μου προσέγγιση, σφυρηλατημένη μέσα από το Μεταπτυχιακό μου στην Ειδική Αγωγή και τη Συστημική μου εκπαίδευση, βασίζεται σε μια απλή αλλά θεμελιώδη αλήθεια: <strong>Κανένα σύμπτωμα και καμία συμπεριφορά δεν εμφανίζεται σε κενό.</strong></p>
+                <p>Σκεφτείτε τον εαυτό σας ή το παιδί σας ως μέρος ενός «κινητού διακοσμητικού» (mobile): όταν κουνηθεί ένα κομμάτι, ολόκληρη η κατασκευή αρχίζει να ταλαντεύεται.</p>
+                <ul style="list-style: none; padding-left: 0; margin-top: 20px;">
+                    <li style="margin-bottom: 15px;"><strong>Η Ματιά της Ειδικής Αγωγής:</strong> Όταν ένα παιδί αντιμετωπίζει μια μαθησιακή δυσκολία, η δυσκολία αυτή δεν περιορίζεται στο σχολείο. Επηρεάζει την αυτοπεποίθησή του και τη δυναμική ολόκληρης της οικογένειας.</li>
+                    <li style="margin-bottom: 15px;"><strong>Η Συστημική Παρέμβαση:</strong> Εξερευνούμε το κρυφό δίκτυο των σχέσεων. Πώς επικοινωνεί η οικογένεια; Πώς το άγχος του ενός τροφοδοτεί την ανησυχία του άλλου;</li>
+                    <li><strong>Η Κοινή Πορεία:</strong> Στο γραφείο μου στο Κουκάκι, η θεραπεία είναι μια συνεργασία. Στόχος μου είναι αλλάζοντας εσείς στάση, να φέρετε μια νέα, υγιή και σταθερή ισορροπία.</li>
+                </ul>
+            </div>
+            <div class="network-collage">
+                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/A6.jpg" alt="Γραφείο - Χώρος 1">
+                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/AS7.jpg" alt="Γραφείο - Χώρος 2">
+                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/as3.jpg" alt="Γραφείο - Χώρος 3">
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews-section">
+        <div class="container reviews-grid">
+            <div class="reviews-text">
+                <h4>ΑΞΙΟΛΟΓΗΣΕΙΣ</h4>
+                <h2>Η εμπειρία των θεραπευόμενων</h2>
+                <p>Ένας ασφαλής χώρος για κατανόηση, αλλαγή και σύνδεση. Διαβάστε τι έχουν μοιραστεί οι άνθρωποι που μας εμπιστεύτηκαν.</p>
+                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/ssa4.jpg" alt="Λεπτομέρεια Χώρου" style="width: 100%; border-radius: 20px; margin-top: 30px; opacity: 0.9; height: 200px; object-fit: cover;">
+            </div>
+            <div class="scroller-container">
+                <div class="scroller-inner" id="reviews-track">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-name">Μαρινίνα <span class="review-count">• 8 αξιολογήσεις</span></div>
+                            <div class="review-rating">10.0</div>
+                        </div>
+                        <p class="review-text">"Πολύ καλή επαγγελματίας. Άκουσε με προσοχή τα συναισθήματά μου και έδειξε κατανόηση."</p>
+                        <div class="review-date">04 Σεπτεμβρίου 2025</div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-name">ΓΛΥΚΕΡΙΑ <span class="review-count">• 2 αξιολογήσεις</span></div>
+                            <div class="review-rating">10.0</div>
+                        </div>
+                        <p class="review-text">"Το να ξεδιπλώνεις την ψυχή σου... Εδώ όμως, με την Ζωή, αισθάνεσαι πως είναι απόλυτα ασφαλές. Ήρεμη, γλυκιά, με ενσυναίσθηση. Η επιλογή της Ζωής, ίσως είναι μονόδρομος!"</p>
+                        <div class="review-date">20 Ιουνίου 2025</div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-name">Εύα <span class="review-count">• 3 αξιολογήσεις</span></div>
+                            <div class="review-rating">10.0</div>
+                        </div>
+                        <p class="review-text">"Πολύ ήρεμη και κατανοητική και μου έδωσε τον χώρο και τον χρόνο να ανοιχτώ και να εκφραστώ εμπνέοντάς μου ηρεμία και ασφάλεια!"</p>
+                        <div class="review-date">23 Απριλίου 2025</div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-name">Μαργαρίτα <span class="review-count">• 1 αξιολόγηση</span></div>
+                            <div class="review-rating">10.0</div>
+                        </div>
+                        <p class="review-text">"Η κυρία Ασμάνογλου είναι μια άρτια εκπαιδευμένη επιστήμονας που αντιμετώπισε με σοβαρότητα αλλά παράλληλα και ανθρωπιά τις δυσκολίες μου."</p>
+                        <div class="review-date">26 Μαρτίου 2024</div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-name">Σηφης <span class="review-count">• 1 αξιολόγηση</span></div>
+                            <div class="review-rating">10.0</div>
+                        </div>
+                        <p class="review-text">"Πήγα με το παιδί μου πρώτη φορά σε ψυχολογο ! Εμεινα απόλυτα ικανοποιημένος! Νομίζω βλέπω από τώρα διαφορά! Την συστήνω ανεπιφύλακτα!"</p>
+                        <div class="review-date">07 Μαρτίου 2024</div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-name">Κωνσταντινος <span class="review-count">• 1 αξιολόγηση</span></div>
+                            <div class="review-rating">9.6</div>
+                        </div>
+                        <p class="review-text">"Πραγματικά εξαιρετική επαγγελματίας ! Από την πρώτη στιγμή ένιωσα οτι βρίσκομαι σε ένα ασφαλές και εμπιστευτικό περιβάλλον."</p>
+                        <div class="review-date">06 Μαρτίου 2024</div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-name">Pel <span class="review-count">• 1 αξιολόγηση</span></div>
+                            <div class="review-rating">10.0</div>
+                        </div>
+                        <p class="review-text">"Χαίρομαι που η πρώτη μου εμπειρία είναι με την κυρία Ασμάνογλου, με έκανα να νιώσω άνετα από την πρώτη στιγμή. Την ευχαριστώ πολύ!"</p>
+                        <div class="review-date">22 Φεβρουαρίου 2024</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-section" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div class="contact-info">
+                    <h4>ΕΠΙΚΟΙΝΩΝΗΣΤΕ ΜΑΖΙ ΜΟΥ</h4>
+                    <h2>Είμαι εδώ για εσάς.</h2>
+                    <p>Επικοινωνήστε για οποιαδήποτε απορία ή για να κλείσουμε το πρώτο μας ραντεβού.</p>
+                    
+                    <div class="contact-details">
+                        <p>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+                            +30 694 887 0385
+                        </p>
+                        <p>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            Δημητρακοπούλου 50, Κουκάκι, Αττική
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Ονοματεπώνυμο">
+                            <input type="email" class="form-input" placeholder="Email">
+                        </div>
+                        <input type="tel" class="form-input" placeholder="Τηλέφωνο" style="margin-bottom: 20px;">
+                        <textarea class="form-input" placeholder="Το μήνυμά σας"></textarea>
+                        <button type="submit" class="btn" style="width: 100%; border-radius: 4px;">Αποστολή</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-logo">
+                    <strong>Ζωή Ασμάνογλου</strong> <br> <span style="font-weight: 300; font-size: 0.8rem;">Ψυχολόγος • Ψυχοθεραπεύτρια</span>
+                </div>
+                <div class="footer-links" style="display: flex; gap: 30px;">
+                    <div>
+                        <a href="#home" style="display: block; margin-bottom: 5px;">ΑΡΧΙΚΗ</a>
+                        <a href="#about" style="display: block; margin-bottom: 5px;">ΣΧΕΤΙΚΑ</a>
+                        <a href="#services" style="display: block;">ΥΠΗΡΕΣΙΕΣ</a>
+                    </div>
+                    <div>
+                        <a href="#approach" style="display: block; margin-bottom: 5px;">ΠΡΟΣΕΓΓΙΣΗ</a>
+                        <a href="#contact" style="display: block; margin-bottom: 5px;">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+                        <a href="#" style="display: block;">ΠΟΛΙΤΙΚΗ ΑΠΟΡΡΗΤΟΥ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const track = document.getElementById('reviews-track');
+            // Duplicate the content to ensure seamless infinite scrolling loop
+            const content = track.innerHTML;
+            track.innerHTML = content + content;
+        });
+    </script>
+</body>
+</html>
