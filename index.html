@@ -2,13 +2,13 @@
 <html lang="el">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ζωή Ασμάνογλου - Ψυχολόγος & Συστημική Ψυχοθεραπεύτρια</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables based on exact instructions */
+        /* CSS Variables */
         :root {
             --bg-color: #F8F5EF;       /* Background γενικά */
             --green-section: #8A9580;  /* Μεγάλα πράσινα sections/footer */
@@ -21,7 +21,11 @@
             --font-body: 'Inter', sans-serif;
         }
 
-        /* Global Styles */
+        /* Global Styles & Mobile fix for no right margin */
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
         * {
             box-sizing: border-box;
             margin: 0;
@@ -32,7 +36,6 @@
             color: var(--text-color);
             background-color: var(--bg-color);
             line-height: 1.6;
-            overflow-x: hidden;
         }
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--font-heading);
@@ -54,6 +57,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            width: 100%;
         }
         
         /* Buttons */
@@ -106,7 +110,10 @@
             z-index: 10;
         }
         .logo img {
-            max-height: 70px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
         }
         .nav-links {
             display: flex;
@@ -181,7 +188,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 40px;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
         }
         .service-card {
             padding: 20px;
@@ -215,11 +222,25 @@
             padding: 120px 0;
             position: relative;
         }
-        .approach-section .container {
+        .approach-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
+            grid-template-areas: 
+                "image headings"
+                "image text";
+            column-gap: 80px;
+            align-items: start;
+        }
+        .approach-headings {
+            grid-area: headings;
+            margin-bottom: 30px;
+        }
+        .approach-image {
+            grid-area: image;
+            text-align: center;
+        }
+        .approach-text {
+            grid-area: text;
         }
         .approach-section .blob-2 {
             background-color: var(--green-section);
@@ -244,16 +265,16 @@
             max-width: 450px;
             height: 550px;
         }
-        .approach-text h4 {
+        .approach-headings h4 {
             font-family: var(--font-body);
             text-transform: uppercase;
             letter-spacing: 2px;
             font-size: 0.9rem;
             margin-bottom: 15px;
         }
-        .approach-text h2 {
+        .approach-headings h2 {
             font-size: 2.8rem;
-            margin-bottom: 30px;
+            margin-bottom: 0;
         }
 
         /* Hidden Network (Collage Section) */
@@ -374,10 +395,14 @@
             color: #fff;
         }
         .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
             margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .contact-info h4 {
             font-family: var(--font-body);
@@ -398,34 +423,8 @@
             margin-bottom: 15px;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 15px;
-        }
-        /* Form */
-        .contact-form {
-            background: transparent;
-        }
-        .form-group {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .form-input {
-            width: 100%;
-            padding: 16px;
-            border-radius: 4px;
-            border: none;
-            background-color: #fff;
-            font-family: var(--font-body);
-            font-size: 0.95rem;
-            color: var(--text-color);
-        }
-        .form-input::placeholder {
-            color: #aaa;
-        }
-        textarea.form-input {
-            height: 150px;
-            resize: none;
-            margin-bottom: 20px;
         }
         
         .footer-bottom {
@@ -439,15 +438,20 @@
 
         /* Responsive */
         @media (max-width: 992px) {
-            .hero .container, .approach-section .container, .network-container, .reviews-grid, .footer-grid {
+            .hero .container, .network-container, .reviews-grid {
                 grid-template-columns: 1fr;
+            }
+            .approach-content {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
             }
             .services-grid {
                 grid-template-columns: 1fr;
                 gap: 60px;
             }
             .nav-links {
-                display: none; /* Hide on mobile for simplicity, or implement a hamburger menu */
+                display: none;
             }
             .hero-text h1 {
                 font-size: 2.5rem;
@@ -455,11 +459,17 @@
             .scroller-container {
                 height: 400px;
             }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header / Nav -->
     <div class="container">
         <nav>
             <a href="#" class="logo">
@@ -467,7 +477,6 @@
             </a>
             <div class="nav-links">
                 <a href="#home">ΑΡΧΙΚΗ</a>
-                <a href="#about">ΣΧΕΤΙΚΑ</a>
                 <a href="#services">ΥΠΗΡΕΣΙΕΣ</a>
                 <a href="#approach">ΠΡΟΣΕΓΓΙΣΗ</a>
                 <a href="#contact">ΕΠΙΚΟΙΝΩΝΙΑ</a>
@@ -476,6 +485,7 @@
         </nav>
     </div>
 
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="blob-bg blob-1"></div>
         <div class="container">
@@ -490,6 +500,7 @@
         </div>
     </section>
 
+    <!-- Services Section -->
     <section class="services-section" id="services">
         <div class="container">
             <h2>ΥΠΗΡΕΣΙΕΣ</h2>
@@ -520,28 +531,33 @@
                 </div>
 
             </div>
-            <a href="#services" class="btn btn-outline">Δείτε όλες τις υπηρεσίες</a>
         </div>
     </section>
 
+    <!-- About / Approach Section -->
     <section class="approach-section" id="approach">
         <div class="blob-bg blob-2"></div>
         <div class="blob-bg blob-3"></div>
         <div class="container">
-            <div class="approach-image">
-                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/as5.jpg" alt="Η Προσέγγισή μου" class="blob-img">
-            </div>
-            <div class="approach-text">
-                <h4>Η ΠΡΟΣΕΓΓΙΣΗ ΜΟΥ</h4>
-                <h2>Συστημική προσέγγιση με επίκεντρο τον άνθρωπο.</h2>
-                <p>Ολοκλήρωσε τις προπτυχιακές της σπουδές στο Τμήμα Ψυχολογίας του Εθνικού και Καποδιστριακού Πανεπιστημίου Αθηνών (ΕΚΠΑ) και, αναγνωρίζοντας τη σημασία της ολιστικής κατανόησης των αναπτυξιακών προκλήσεων, απέκτησε Μεταπτυχιακό Δίπλωμα Ειδίκευσης στην Ειδική Αγωγή από το Παιδαγωγικό Τμήμα Δημοτικής Εκπαίδευσης.</p>
-                <p>Η κλινική της ταυτότητα βασίζεται στη Συστημική προσέγγιση. Έλαβε την ολοκληρωμένη ψυχοθεραπευτική της εκπαίδευση από την Εταιρία Συστημικής Θεραπείας και Παρέμβασης (ΕΣΥΘΕΠΑΣ).</p>
-                <p>Σήμερα, στο ιδιωτικό της γραφείο, συνδυάζει την επιστημονική της γνώση με μια βαθιά ανθρωποκεντρική στάση, προσφέροντας ατομικές συνεδρίες για παιδιά, εφήβους και ενήλικες, καθώς και εξειδικευμένη θεραπεία ζεύγους.</p>
-                <a href="#about" class="btn btn-outline" style="margin-top: 20px;">Περισσότερα για εμένα</a>
+            <div class="approach-content">
+                <div class="approach-headings">
+                    <h4>Η ΠΡΟΣΕΓΓΙΣΗ ΜΟΥ</h4>
+                    <h2>Συστημική προσέγγιση με επίκεντρο τον άνθρωπο.</h2>
+                </div>
+                <div class="approach-image">
+                    <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/as5.jpg" alt="Η Προσέγγισή μου" class="blob-img">
+                </div>
+                <div class="approach-text">
+                    <p>Ολοκλήρωσα τις προπτυχιακές μου σπουδές στο Τμήμα Ψυχολογίας του Εθνικού και Καποδιστριακού Πανεπιστημίου Αθηνών (ΕΚΠΑ) και, αναγνωρίζοντας τη σημασία της ολιστικής κατανόησης των αναπτυξιακών προκλήσεων, απέκτησα Μεταπτυχιακό Δίπλωμα Ειδίκευσης στην Ειδική Αγωγή από το Παιδαγωγικό Τμήμα Δημοτικής Εκπαίδευσης.</p>
+                    <p>Η κλινική μου ταυτότητα βασίζεται στη Συστημική προσέγγιση. Έλαβα την ολοκληρωμένη ψυχοθεραπευτική μου εκπαίδευση από την Εταιρία Συστημικής Θεραπείας και Παρέμβασης (ΕΣΥΘΕΠΑΣ).</p>
+                    <p>Σήμερα, στο ιδιωτικό μου γραφείο, συνδυάζω την επιστημονική μου γνώση με μια βαθιά ανθρωποκεντρική στάση, προσφέροντας ατομικές συνεδρίες για παιδιά, εφήβους και ενήλικες, καθώς και εξειδικευμένη θεραπεία ζεύγους.</p>
+                    <a href="https://www.doctoranytime.gr/d/Psychologos/asmanoglou-zoi" target="_blank" class="btn btn-outline" style="margin-top: 20px;">Περισσότερα για εμένα</a>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Hidden Network Section (Text + Collage) -->
     <section class="hidden-network">
         <div class="container network-container">
             <div class="network-text">
@@ -562,16 +578,19 @@
         </div>
     </section>
 
+    <!-- Reviews Section -->
     <section class="reviews-section">
         <div class="container reviews-grid">
             <div class="reviews-text">
                 <h4>ΑΞΙΟΛΟΓΗΣΕΙΣ</h4>
                 <h2>Η εμπειρία των θεραπευόμενων</h2>
                 <p>Ένας ασφαλής χώρος για κατανόηση, αλλαγή και σύνδεση. Διαβάστε τι έχουν μοιραστεί οι άνθρωποι που μας εμπιστεύτηκαν.</p>
+                <a href="https://www.doctoranytime.gr/d/Psychologos/asmanoglou-zoi#review-section" target="_blank" class="btn btn-outline" style="margin-top: 10px;">Διαβάστε περισσότερα</a>
                 <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/ssa4.jpg" alt="Λεπτομέρεια Χώρου" style="width: 100%; border-radius: 20px; margin-top: 30px; opacity: 0.9; height: 200px; object-fit: cover;">
             </div>
             <div class="scroller-container">
                 <div class="scroller-inner" id="reviews-track">
+                    <!-- Reviews populated here -->
                     <div class="review-card">
                         <div class="review-header">
                             <div class="review-name">Μαρινίνα <span class="review-count">• 8 αξιολογήσεις</span></div>
@@ -639,6 +658,7 @@
         </div>
     </section>
 
+    <!-- Footer / Contact Section -->
     <footer class="footer-section" id="contact">
         <div class="container">
             <div class="footer-grid">
@@ -660,40 +680,30 @@
                     </div>
                 </div>
 
-                <div class="contact-form">
-                    <form action="#" method="POST">
-                        <div class="form-group">
-                            <input type="text" class="form-input" placeholder="Ονοματεπώνυμο">
-                            <input type="email" class="form-input" placeholder="Email">
-                        </div>
-                        <input type="tel" class="form-input" placeholder="Τηλέφωνο" style="margin-bottom: 20px;">
-                        <textarea class="form-input" placeholder="Το μήνυμά σας"></textarea>
-                        <button type="submit" class="btn" style="width: 100%; border-radius: 4px;">Αποστολή</button>
-                    </form>
-                </div>
-
             </div>
 
             <div class="footer-bottom">
-                <div class="footer-logo">
-                    <strong>Ζωή Ασμάνογλου</strong> <br> <span style="font-weight: 300; font-size: 0.8rem;">Ψυχολόγος • Ψυχοθεραπεύτρια</span>
+                <div class="footer-logo" style="display: flex; align-items: center; gap: 15px;">
+                    <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/ASLOGO.jpg" alt="Λογότυπο Ζωή Ασμάνογλου" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                    <div style="text-align: left;">
+                        <strong>Ζωή Ασμάνογλου</strong> <br> <span style="font-weight: 300; font-size: 0.8rem;">Ψυχολόγος • Ψυχοθεραπεύτρια</span>
+                    </div>
                 </div>
                 <div class="footer-links" style="display: flex; gap: 30px;">
                     <div>
                         <a href="#home" style="display: block; margin-bottom: 5px;">ΑΡΧΙΚΗ</a>
-                        <a href="#about" style="display: block; margin-bottom: 5px;">ΣΧΕΤΙΚΑ</a>
                         <a href="#services" style="display: block;">ΥΠΗΡΕΣΙΕΣ</a>
                     </div>
                     <div>
                         <a href="#approach" style="display: block; margin-bottom: 5px;">ΠΡΟΣΕΓΓΙΣΗ</a>
                         <a href="#contact" style="display: block; margin-bottom: 5px;">ΕΠΙΚΟΙΝΩΝΙΑ</a>
-                        <a href="#" style="display: block;">ΠΟΛΙΤΙΚΗ ΑΠΟΡΡΗΤΟΥ</a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript to enable seamless vertical scrolling of reviews -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const track = document.getElementById('reviews-track');
