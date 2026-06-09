@@ -21,10 +21,11 @@
             --font-body: 'Inter', sans-serif;
         }
 
-        /* Global Styles & Mobile fix for no right margin */
+        /* Global Styles & Clean Responsiveness */
         html, body {
             max-width: 100vw;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
         * {
             box-sizing: border-box;
@@ -88,7 +89,7 @@
             color: #fff;
         }
 
-        /* Organic Shapes (Blobs) */
+        /* Organic Shapes (Blobs) & Images */
         .blob-bg {
             position: absolute;
             z-index: 0;
@@ -98,9 +99,13 @@
             border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
             object-fit: cover;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3/4; /* Keeps images beautifully proportioned, never squished */
+            max-width: 450px;
         }
 
-        /* Navigation */
+        /* Navigation & Logo */
         nav {
             padding: 20px 0;
             display: flex;
@@ -109,11 +114,33 @@
             position: relative;
             z-index: 10;
         }
-        .logo img {
-            width: 70px;
-            height: 70px;
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-wrapper img {
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             object-fit: cover;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            line-height: 1.2;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-text span {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+            margin-top: 2px;
         }
         .nav-links {
             display: flex;
@@ -156,22 +183,20 @@
             font-size: 3.2rem;
             margin-bottom: 25px;
         }
-        .hero-text p {
-            font-size: 1.2rem;
+        .hero-quote {
+            font-size: 1.25rem;
+            font-style: italic;
             margin-bottom: 40px;
             color: var(--text-color);
+            border-left: 3px solid var(--btn-color);
+            padding-left: 20px;
         }
         .hero-image {
             position: relative;
             text-align: center;
         }
-        .hero-image img {
-            width: 100%;
-            max-width: 450px;
-            height: 550px;
-        }
         
-        /* Services Section */
+        /* Services Section (4-grid layout) */
         .services-section {
             background-color: var(--beige-card);
             padding: 100px 0;
@@ -186,38 +211,61 @@
         }
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 40px;
-            margin-bottom: 20px;
+            text-align: left;
         }
         .service-card {
-            padding: 20px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            border: 1px solid rgba(189, 167, 146, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
         }
         .service-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 25px;
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
             border-radius: 50%;
-            border: 1px solid var(--lines-color);
+            background-color: var(--bg-color);
             display: flex;
             align-items: center;
             justify-content: center;
+            color: var(--btn-color);
         }
         .service-icon svg {
-            width: 35px;
-            height: 35px;
-            fill: var(--text-color);
+            width: 30px;
+            height: 30px;
+            fill: currentColor;
         }
         .service-card h3 {
             font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        .service-meta {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--btn-color);
+            font-weight: 500;
             margin-bottom: 15px;
+            display: inline-block;
+            background: rgba(177, 131, 99, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
         }
         .service-card p {
             font-size: 0.95rem;
             color: var(--text-color);
+            margin-bottom: 0;
         }
 
-        /* Approach / About Section */
+        /* Approach / CV Section */
         .approach-section {
             padding: 120px 0;
             position: relative;
@@ -225,22 +273,8 @@
         .approach-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-areas: 
-                "image headings"
-                "image text";
-            column-gap: 80px;
-            align-items: start;
-        }
-        .approach-headings {
-            grid-area: headings;
-            margin-bottom: 30px;
-        }
-        .approach-image {
-            grid-area: image;
-            text-align: center;
-        }
-        .approach-text {
-            grid-area: text;
+            gap: 80px;
+            align-items: center;
         }
         .approach-section .blob-2 {
             background-color: var(--green-section);
@@ -260,10 +294,9 @@
             opacity: 0.8;
             z-index: -1;
         }
-        .approach-image img {
-            width: 100%;
-            max-width: 450px;
-            height: 550px;
+        .approach-text-wrapper {
+            position: relative;
+            z-index: 2;
         }
         .approach-headings h4 {
             font-family: var(--font-body);
@@ -274,10 +307,44 @@
         }
         .approach-headings h2 {
             font-size: 2.8rem;
-            margin-bottom: 0;
+            margin-bottom: 25px;
+        }
+        
+        /* Collapsible CV styling */
+        #detailed-bio {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid var(--lines-color);
+        }
+        #detailed-bio h5 {
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: var(--btn-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        #detailed-bio ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        #detailed-bio li {
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 18px;
+            line-height: 1.5;
+        }
+        #detailed-bio li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--btn-color);
+            font-weight: bold;
         }
 
-        /* Hidden Network (Collage Section) */
+        /* Theoretical Framework Section */
         .hidden-network {
             background-color: var(--beige-card);
             padding: 120px 0;
@@ -295,17 +362,18 @@
         }
         .network-collage img {
             width: 100%;
-            height: 250px;
+            height: auto;
+            aspect-ratio: 1/1;
             object-fit: cover;
             border-radius: 20px;
         }
         .network-collage img:nth-child(1) {
             grid-column: span 2;
-            height: 300px;
+            aspect-ratio: 16/9;
             border-radius: 50% 30% 60% 40% / 40% 60% 40% 50%;
         }
 
-        /* Reviews Section (Vertical Marquee) */
+        /* Reviews Section */
         .reviews-section {
             padding: 100px 0;
             background-color: var(--bg-color);
@@ -323,7 +391,6 @@
             height: 600px;
             overflow: hidden;
             position: relative;
-            /* Gradient mask for smooth fade out at top and bottom */
             mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
             -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
         }
@@ -385,7 +452,7 @@
             text-align: right;
         }
 
-        /* Contact & Footer */
+        /* Footer / Contact Section */
         .footer-section {
             background-color: var(--green-section);
             color: #fff;
@@ -400,7 +467,7 @@
             align-items: center;
             text-align: center;
             margin-bottom: 60px;
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -436,22 +503,28 @@
             font-size: 0.85rem;
         }
 
-        /* Responsive */
+        /* Mobile Layout Adjustments */
         @media (max-width: 992px) {
             .hero .container, .network-container, .reviews-grid {
                 grid-template-columns: 1fr;
-            }
-            .approach-content {
-                display: flex;
-                flex-direction: column;
-                gap: 30px;
+                gap: 50px;
             }
             .services-grid {
                 grid-template-columns: 1fr;
-                gap: 60px;
             }
-            .nav-links {
-                display: none;
+            /* Clean approach layout for mobile (No squishing, beautiful vertical rhythm) */
+            .approach-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .approach-image {
+                order: 2; /* Ensures image flows gracefully under the text content */
+            }
+            .approach-text-wrapper {
+                order: 1;
+            }
+            .nav-links, .nav-cta {
+                display: none; /* Keep clean mobile header */
             }
             .hero-text h1 {
                 font-size: 2.5rem;
@@ -469,11 +542,14 @@
 </head>
 <body>
 
-    <!-- Header / Nav -->
     <div class="container">
         <nav>
-            <a href="#" class="logo">
-                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/ASLOGO.jpg" alt="Ζωή Ασμάνογλου - Ψυχολόγος">
+            <a href="#" class="logo-wrapper">
+                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/ASLOGO.jpg" alt="Λογότυπο">
+                <div class="logo-text">
+                    Ζωή Ασμάνογλου
+                    <span>Ψυχολόγος Συστημική ψυχοθεραπεύτρια</span>
+                </div>
             </a>
             <div class="nav-links">
                 <a href="#home">ΑΡΧΙΚΗ</a>
@@ -481,17 +557,16 @@
                 <a href="#approach">ΠΡΟΣΕΓΓΙΣΗ</a>
                 <a href="#contact">ΕΠΙΚΟΙΝΩΝΙΑ</a>
             </div>
-            <a href="#contact" class="btn">Κλείστε ραντεβού</a>
+            <a href="#contact" class="btn nav-cta">Κλείστε ραντεβού</a>
         </nav>
     </div>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="blob-bg blob-1"></div>
         <div class="container">
             <div class="hero-text">
-                <h1>Συστημική Ψυχοθεραπεία & Ειδική Αγωγή: Ανακαλύπτοντας την Ισορροπία μέσα στις Σχέσεις</h1>
-                <p>Η Ζωή Ασμάνογλου είναι αδειούχος Ψυχολόγος (Αρ. Αδείας: 16714) και Συστημική Ψυχοθεραπεύτρια, διατηρώντας το ιδιωτικό της γραφείο στο Κουκάκι.</p>
+                <h1>Ζωή Ασμάνογλου</h1>
+                <p class="hero-quote">«Η επικοινωνία είναι για τις σχέσεις ό,τι είναι η αναπνοή για τη διατήρηση της ζωής.» Virginia Satir</p>
                 <a href="#contact" class="btn">Κλείστε ένα πρώτο ραντεβού</a>
             </div>
             <div class="hero-image">
@@ -500,7 +575,22 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <section class="hidden-network" id="theory">
+        <div class="container network-container">
+            <div class="network-text">
+                <h2>Θεωρητικό Πλαίσιο: Η Συστημική Ψυχοθεραπεία</h2>
+                <p>Η Συστημική Ψυχοθεραπεία αποτελεί μια σύγχρονη θεραπευτική προσέγγιση που βασίζεται στην ιδέα ότι ο άνθρωπος δεν αναπτύσσεται και δεν λειτουργεί απομονωμένα, αλλά μέσα σε ένα δίκτυο σχέσεων και αλληλεπιδράσεων. Η οικογένεια, η συντροφική σχέση, το εργασιακό περιβάλλον, οι φιλίες και το ευρύτερο κοινωνικό πλαίσιο επιδρούν στην αυτοαντίληψή μας και στον τρόπο που επικοινωνούμε και αντιμετωπίζουμε τις προκλήσεις της ζωής. Η συστημική σκέψη δίνει έμφαση όχι μόνο στο ίδιο το σύμπτωμα ή τη δυσκολία, αλλά και στο πλαίσιο μέσα στο οποίο αυτή εμφανίζεται. Αντιμετωπίζει το άτομο ως κομμάτι ενός πλαισίου, ενός συστήματος και εξετάζει τους τρόπους με τους οποίους τα μέλη του συστήματος αυτού αλληλεπιδρούν και επηρεάζουν το ένα το άλλο.</p>
+                <p>Μέσα από αυτή την οπτική, τα προβλήματα δεν θεωρούνται αποκλειστικά ατομικά χαρακτηριστικά, αλλά συνδέονται με τα πρότυπα επικοινωνίας. Η θεραπευτική διαδικασία βοηθά στην αναγνώριση και στην επεξεργασία της λειτουργίας επαναλαμβανόμενων μοτίβων επικοινωνίας, συμπεριφοράς και αλληλεπίδρασης, δημιουργώντας σταδιακά χώρο για την αλλαγή όσων από αυτά δεν είναι πια βοηθητικά.</p>
+                <p>Διαμέσου της συνεργατικής θεραπευτικής σχέσης, το άτομο ενδυναμώνεται ώστε να αναγνωρίσει και να αποδεχτεί τις προσωπικές, ενδότερες ανάγκες του, τα συναισθήματά του και τους ρόλους που αναλαμβάνει στις σημαντικές του σχέσεις, να ξαναγράψει την προσωπική του ιστορία αξιοποιώντας τα δυνατά του σημεία και τους προσωπικούς του πόρους, ώστε να αποκτήσει μεγαλύτερη επίγνωση εαυτού και αυτοσυμπόνια.</p>
+            </div>
+            <div class="network-collage">
+                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/A6.jpg" alt="Χώρος Συνεδριών">
+                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/AS7.jpg" alt="Χώρος Συνεδριών Λεπτομέρεια">
+                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/as3.jpg" alt="Χώρος Συνεδριών Άποψη">
+            </div>
+        </div>
+    </section>
+
     <section class="services-section" id="services">
         <div class="container">
             <h2>ΥΠΗΡΕΣΙΕΣ</h2>
@@ -510,75 +600,91 @@
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                     </div>
-                    <h3>Ατομική Ψυχοθεραπεία Ενηλίκων & Αυτογνωσία</h3>
-                    <p>Όταν το άγχος, οι απαιτήσεις των πολλαπλών ρόλων ή μια αίσθηση στασιμότητας δυσκολεύουν την καθημερινότητα, η ατομική συστημική θεραπεία προσφέρει μια νέα προοπτική. Στόχος η προσωπική ενδυνάμωση και η διαμόρφωση μιας ικανοποιητικής καθημερινότητας.</p>
+                    <h3>Ατομική ψυχοθεραπεία</h3>
+                    <div class="service-meta">Διάρκεια: 50 λεπτά</div>
+                    <p>Η ατομική ψυχοθεραπεία προσφέρει έναν ασφαλή και υποστηρικτικό χώρο, στον οποίο το άτομο μπορεί να εξερευνήσει τις σκέψεις, τα συναισθήματα, τις εμπειρίες και τις σχέσεις που επηρεάζουν τη ζωή του. Μέσα από μια συνεργατική θεραπευτική διαδικασία ενισχύεται η κατανόηση του εαυτού και το άτομο επαναδιηγείται την ιστορία του με γνώμονα τις προσωπικές δυνάμεις και τα προσωπικά αποθέματά του. Στόχος της ψυχοθεραπείας δεν είναι μόνο η ανακούφιση από τα συμπτώματα, αλλά και η ενίσχυση της προσωπικής εξέλιξης, της αυτογνωσίας και της ψυχικής ανθεκτικότητας. Μέσα από τη θεραπευτική διαδικασία, το άτομο καλείται να εμπλουτίσει την αφήγηση της προσωπικής του ιστορίας, να αποκτήσει μεγαλύτερη ελευθερία στις επιλογές του και να αναπτύξει μια πιο αυθεντική και ουσιαστική σχέση με τον εαυτό του και με τους άλλους. Η ατομική ψυχοθεραπεία πραγματοποιείται συνήθως σε τακτικές εβδομαδιαίες συνεδρίες και προσαρμόζεται στις ιδιαίτερες ανάγκες και στόχους κάθε ανθρώπου.</p>
                 </div>
 
                 <div class="service-card">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
                     </div>
-                    <h3>Συστημική Θεραπεία Ζεύγους & Οικογενειακές Δυναμικές</h3>
-                    <p>Οι σχέσεις μας είναι ζωντανός οργανισμός. Προσφέρεται ένας ασφαλής χώρος για την αποκωδικοποίηση μοτίβων συγκρούσεων. Μέσω της Συμβουλευτικής Γονέων, υποστηρίζουμε τη διαχείριση της καθημερινότητας και την ενίσχυση της επικοινωνίας.</p>
+                    <h3>Θεραπεία ζεύγους</h3>
+                    <div class="service-meta">Διάρκεια: 60-75 λεπτά</div>
+                    <p>Η θεραπεία ζεύγους διερευνά τα επαναλαμβανόμενα μοτίβα επικοινωνίας μεταξύ των συντρόφων και τις συναισθηματικές ανάγκες που εκφράζονται μέσα στη σχέση. Τα προβλήματα που προκύπτουν εντός της σχέσης, όπως η δυσκολία επικοινωνίας, η συναισθηματική αποξένωση, η διαχείριση των συγκρούσεων, η απιστία, η διαχείριση των αντικρουόμενων γονεϊκών αντιλήψεων, είναι κάποια από τα θέματα που συχνά προκύπτουν στην συντροφική σχέση και απειλούν την λειτουργικότητά της. Η θεραπευτική διαδικασία βοηθάει το ζευγάρι να αναγνωρίσει και να σχεδιάσει τις αλλαγές που χρειάζονται για να μπορέσει να συμβιώνει αρμονικά. Στόχος της θεραπείας είναι η δημιουργία ενός ασφαλούς πλαισίου ώστε οι σύντροφοι να αναγνωρίσουν τον αρνητικό κύκλο επικοινωνίας μεταξύ τους και να μάθουν να εκφράζουν τις συναισθηματικές τους ανάγκες με σαφήνεια και φροντίδα. Μέσω της από κοινού διαπραγμάτευσης, καλούνται να βρουν τον ιδανικό για εκείνους τρόπο να ακούν και να ακουστούν. Η θεραπεία ζεύγους πραγματοποιείται συνήθως ανά δύο εβδομάδες.</p>
                 </div>
 
                 <div class="service-card">
                     <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9 11c1.66 0 2.99-1.34 2.99-3S10.66 5 9 5 6 6.34 6 8s1.34 3 3 3zm6 0c1.66 0 2.99-1.34 2.99-3S16.66 5 15 5s-3 1.34-3 3 1.34 3 3 3zm-6 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm6 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    </div>
+                    <h3>Συμβουλευτική γονέων</h3>
+                    <div class="service-meta">Διάρκεια: 50 λεπτά</div>
+                    <p>Η συμβουλευτική γονέων επικεντρώνεται στην κατανόηση και την ενίσχυση των σχέσεων μεταξύ των γονέων και των παιδιών μέσα στο ευρύτερο οικογενειακό πλαίσιο. Δίνεται έμφαση στην βελτίωση της επικοινωνίας και στην διερεύνηση και αντιμετώπιση των δυσκολιών που προκύπτουν στην καθημερινότητα, ώστε οι γονείς να ανταποκρίνονται με πιο λειτουργικό και υποστηρικτικό τρόπο. Μέσα από τη διαδικασία της συμβουλευτικής οι γονείς υποστηρίζονται ώστε να συμφιλιωθούν με τον γονεϊκό τους ρόλο, να κατανοήσουν καλύτερα τη συμπεριφορά των παιδιών τους, να αναγνωρίσουν το συναισθηματικό της υπόβαθρο και να το συσχετίσουν με την αναπτυξιακή φάση ζωής την οποία το κάθε παιδί διανύει. Στόχος είναι η ενίσχυση της γονεϊκής επάρκειας και η δημιουργία ενός πιο σταθερού και υποστηρικτικού περιβάλλοντος για την υγιή ανάπτυξη του παιδιού.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
                         <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61l-1.66 4.97c-.15.46.3.89.75.72l4.89-1.89C10.21 21.8 11.08 22 12 22c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 17c-.82 0-1.6-.14-2.34-.39-.23-.08-.48-.09-.72-.03l-3.32 1.28 1.12-3.36c.07-.22.04-.47-.09-.67-1.04-1.45-1.65-3.23-1.65-5.13 0-3.86 3.14-7 7-7s7 3.14 7 7-3.14 7-7 7z"/><path d="M11 8h2v5h-2zm0 6h2v2h-2z"/></svg>
                     </div>
-                    <h3>Ψυχοθεραπεία Παιδιών, Εφήβων & Σχολική Ψυχολογία</h3>
-                    <p>Η συμπεριφορά δεν είναι "πρόβλημα", αλλά μήνυμα που χρειάζεται κατανόηση. Αντιμετωπίζουμε ζητήματα σχολικού άγχους και αναπτυξιακών ιδιαιτεροτήτων, χτίζοντας την αυτοεκτίμηση του παιδιού με απόλυτο σεβασμό.</p>
+                    <h3>Συμβουλευτική εφήβων</h3>
+                    <div class="service-meta">Διάρκεια: 50 λεπτά</div>
+                    <p>Η συμβουλευτική εφήβων προσφέρει έναν ασφαλή χώρο έκφρασης, όπου ο έφηβος μπορεί να διερευνήσει τις αλλαγές, τις συγκρούσεις και τις προκλήσεις που συνοδεύουν αυτή τη φάση της ζωής. Δίνεται έμφαση στην κατανόηση των σχέσεων με την οικογένεια, τους συνομηλίκους και τον εαυτό, καθώς και στην ενίσχυση της ταυτότητας και της αυτοεκτίμησης. Οι έφηβοι αναδιαμορφώνουν την ταυτότητά τους αμφισβητώντας παλιούς ρόλους, αντιλήψεις και αξίες επιδιώκοντας να προσδιορίσουν τον εαυτό τους. Στην πορεία αυτή επέρχονται αλλαγές στην αυτοεικόνα του εφήβου, καθώς αυτή αρχίζει να δομείται και βάσει παραγόντων εκτός οικογένειας. Σε αυτήν την μεταβατική σύνθετη διαδικασία η συμβουλευτική μπορεί να βοηθήσει τον έφηβο να αποδεχθεί τις διάφορες πλευρές του που αναδύονται. Μέσα από τη θεραπευτική σχέση, ο έφηβος υποστηρίζεται στη διαδικασία αυτοπροσδιορισμού του, ώστε να εμπλουτίσει τους τρόπους επικοινωνίας του.</p>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- About / Approach Section -->
     <section class="approach-section" id="approach">
         <div class="blob-bg blob-2"></div>
         <div class="blob-bg blob-3"></div>
         <div class="container">
             <div class="approach-content">
-                <div class="approach-headings">
-                    <h4>Η ΠΡΟΣΕΓΓΙΣΗ ΜΟΥ</h4>
-                    <h2>Συστημική προσέγγιση με επίκεντρο τον άνθρωπο.</h2>
+                <div class="approach-text-wrapper">
+                    <div class="approach-headings">
+                        <h4>ΒΙΟΓΡΑΦΙΚΟ</h4>
+                        <h2>Λίγα λόγια για εμένα</h2>
+                    </div>
+                    <p>Ολοκλήρωσα τις προπτυχιακές μου σπουδές στο Τμήμα Ψυχολογίας του Εθνικού και Καποδιστριακού Πανεπιστημίου Αθηνών και κατέχω Μεταπτυχιακό Δίπλωμα Ειδίκευσης στις Επιστήμες της Αγωγής από το Παιδαγωγικό Τμήμα Δημοτικής Εκπαίδευσης. Έχω λάβει ψυχοθεραπευτική εκπαίδευση στη συστημική ψυχοθεραπεία από την Εταιρία Συστημικής Θεραπείας και Παρέμβασης σε Άτομα, Οικογένειες και Ευρύτερα Συστήματα. Παράλληλα έχω συμμετάσχει σε εξειδικευμένα σεμινάρια και επιμορφώσεις πάνω στην συστημική ψυχοθεραπεία παιδιών, στη θεραπεία ζεύγους και στην συμβουλευτική γονέων. Επαγγελματικά έχω αποκτήσει πολύτιμη εμπειρία ως Ψυχολόγος σε κέντρα ειδικών θεραπειών. Στο ιδιωτικό μου γραφείο αναλαμβάνω ατομικές ψυχοθεραπευτικές συνεδρίες ενηλίκων και εφήβων καθώς και θεραπεία ζεύγους και συμβουλευτική γονέων.</p>
+                    
+                    <button id="toggleBioBtn" class="btn btn-outline" style="margin-top: 10px;">περισσότερα</button>
+
+                    <div id="detailed-bio" style="display: none;">
+                        <h5>Σπουδές</h5>
+                        <ul>
+                            <li>Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών, Ψυχολογία Αθήνας (2008 - 2015)</li>
+                            <li>Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών, Μεταπτυχιακό Δίπλωμα Ειδίκευσης στο Παιδαγωγικό Τμήμα Δημοτικής Εκπαίδευσης με κατεύθυνση στην Ειδική Αγωγή (2017 - 2019)</li>
+                            <li>Εταιρία Συστημικής Θεραπείας και Παρέμβασης σε Άτομα, Οικογένειες και Ευρύτερα Συστήματα (ΕΣΥΘΕΠΑΣ), Πρόγραμμα Εκπαίδευσης στη Συστημική Ψυχοθεραπεία (2018 - 2023)</li>
+                        </ul>
+
+                        <h5>Επαγγελματική εμπειρία</h5>
+                        <ul>
+                            <li>Ψυχολόγος, Κέντρο Ημερήσιας Φροντίδας του Συλλόγου Προσαρμοσμένων Δραστηριοτήτων ΑΛΜΑ, Ελλάδα (2021 - Σήμερα)</li>
+                            <li>Ψυχολόγος, Ιδιωτικά Κέντρα Ειδικών Θεραπειών για παιδιά και εφήβους, Ελλάδα (2016 - Σήμερα)</li>
+                            <li>Ψυχολόγος, τμήμα Πρώιμης Παρέμβασης στο Κέντρο Ημέρας για παιδιά με Διάχυτες Αναπτυξιακές Διαταραχές του Κέντρου “Ηλιαχτίδα”, Ελλάδα (2019)</li>
+                            <li>Πρακτική άσκηση, Κέντρο Ημέρας ‘Στην αυλή του κόσμου’ του Κέντρου Παιδιού και Εφήβου, Ελλάδα (2016)</li>
+                            <li>Πρακτική Άσκηση Ψυχολόγου, Κέντρο Ψυχικής Υγείας Παλαιού Φαλήρου (2012)</li>
+                        </ul>
+
+                        <h5>Επιμορφώσεις</h5>
+                        <ul>
+                            <li>Συστημική Θεραπεία ζεύγους και Συμβουλευτική γονέων, Συστημικό Εργαστήρι Ροδάκινο (2023)</li>
+                            <li>Συστημική Θεραπεία Παιδιών 3-12 ετών. Η Τέχνη και το Παιχνίδι στη Θεραπευτική Διαδικασία, Συστημικό Εργαστήρι Ροδάκινο (2022)</li>
+                            <li>Σχολική Ψυχολογία, Κέντρο Επιμόρφωσης και Δια Βίου Μάθησης του Πανεπιστημίου Αιγαίου (2021)</li>
+                            <li>Functional ABA: Το Εκπαιδευτικό Μοντέλο Pyramid, Pyramid PECS Hellas (2021)</li>
+                            <li>Ετήσιο Επιμορφωτικό Σεμινάριο Κατάρτισης στην Ειδική Αγωγή, Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (2016)</li>
+                            <li>Εργαστήριο Αποτελεσματικού Δασκάλου, Gordon Hellas (2012)</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="approach-image">
-                    <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/as5.jpg" alt="Η Προσέγγισή μου" class="blob-img">
-                </div>
-                <div class="approach-text">
-                    <p>Ολοκλήρωσα τις προπτυχιακές μου σπουδές στο Τμήμα Ψυχολογίας του Εθνικού και Καποδιστριακού Πανεπιστημίου Αθηνών (ΕΚΠΑ) και, αναγνωρίζοντας τη σημασία της ολιστικής κατανόησης των αναπτυξιακών προκλήσεων, απέκτησα Μεταπτυχιακό Δίπλωμα Ειδίκευσης στην Ειδική Αγωγή από το Παιδαγωγικό Τμήμα Δημοτικής Εκπαίδευσης.</p>
-                    <p>Η κλινική μου ταυτότητα βασίζεται στη Συστημική προσέγγιση. Έλαβα την ολοκληρωμένη ψυχοθεραπευτική μου εκπαίδευση από την Εταιρία Συστημικής Θεραπείας και Παρέμβασης (ΕΣΥΘΕΠΑΣ).</p>
-                    <p>Σήμερα, στο ιδιωτικό μου γραφείο, συνδυάζω την επιστημονική μου γνώση με μια βαθιά ανθρωποκεντρική στάση, προσφέροντας ατομικές συνεδρίες για παιδιά, εφήβους και ενήλικες, καθώς και εξειδικευμένη θεραπεία ζεύγους.</p>
-                    <a href="https://www.doctoranytime.gr/d/Psychologos/asmanoglou-zoi" target="_blank" class="btn btn-outline" style="margin-top: 20px;">Περισσότερα για εμένα</a>
+                    <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/as5.jpg" alt="Ζωή Ασμάνογλου - Ψυχολόγος" class="blob-img">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Hidden Network Section (Text + Collage) -->
-    <section class="hidden-network">
-        <div class="container network-container">
-            <div class="network-text">
-                <h2>Το "Κρυφό Δίκτυο" της Ανάπτυξης: Γιατί Κανένα Σύμπτωμα Δεν Γεννιέται Μόνο του</h2>
-                <p>Στην κλινική μου πρακτική, πολύ συχνά με επισκέπτονται γονείς ανησυχώντας για μια ξαφνική αλλαγή στη συμπεριφορά του παιδιού τους, ή ενήλικες που νιώθουν εγκλωβισμένοι σε ένα έντονο, ανεξήγητο άγχος. Η δική μου προσέγγιση, σφυρηλατημένη μέσα από το Μεταπτυχιακό μου στην Ειδική Αγωγή και τη Συστημική μου εκπαίδευση, βασίζεται σε μια απλή αλλά θεμελιώδη αλήθεια: <strong>Κανένα σύμπτωμα και καμία συμπεριφορά δεν εμφανίζεται σε κενό.</strong></p>
-                <p>Σκεφτείτε τον εαυτό σας ή το παιδί σας ως μέρος ενός «κινητού διακοσμητικού» (mobile): όταν κουνηθεί ένα κομμάτι, ολόκληρη η κατασκευή αρχίζει να ταλαντεύεται.</p>
-                <ul style="list-style: none; padding-left: 0; margin-top: 20px;">
-                    <li style="margin-bottom: 15px;"><strong>Η Ματιά της Ειδικής Αγωγής:</strong> Όταν ένα παιδί αντιμετωπίζει μια μαθησιακή δυσκολία, η δυσκολία αυτή δεν περιορίζεται στο σχολείο. Επηρεάζει την αυτοπεποίθησή του και τη δυναμική ολόκληρης της οικογένειας.</li>
-                    <li style="margin-bottom: 15px;"><strong>Η Συστημική Παρέμβαση:</strong> Εξερευνούμε το κρυφό δίκτυο των σχέσεων. Πώς επικοινωνεί η οικογένεια; Πώς το άγχος του ενός τροφοδοτεί την ανησυχία του άλλου;</li>
-                    <li><strong>Η Κοινή Πορεία:</strong> Στο γραφείο μου στο Κουκάκι, η θεραπεία είναι μια συνεργασία. Στόχος μου είναι αλλάζοντας εσείς στάση, να φέρετε μια νέα, υγιή και σταθερή ισορροπία.</li>
-                </ul>
-            </div>
-            <div class="network-collage">
-                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/A6.jpg" alt="Γραφείο - Χώρος 1">
-                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/AS7.jpg" alt="Γραφείο - Χώρος 2">
-                <img src="https://raw.githubusercontent.com/agelmet/ASMANOGLOU/refs/heads/main/as3.jpg" alt="Γραφείο - Χώρος 3">
-            </div>
-        </div>
-    </section>
-
-    <!-- Reviews Section -->
     <section class="reviews-section">
         <div class="container reviews-grid">
             <div class="reviews-text">
@@ -590,7 +696,6 @@
             </div>
             <div class="scroller-container">
                 <div class="scroller-inner" id="reviews-track">
-                    <!-- Reviews populated here -->
                     <div class="review-card">
                         <div class="review-header">
                             <div class="review-name">Μαρινίνα <span class="review-count">• 8 αξιολογήσεις</span></div>
@@ -599,7 +704,6 @@
                         <p class="review-text">"Πολύ καλή επαγγελματίας. Άκουσε με προσοχή τα συναισθήματά μου και έδειξε κατανόηση."</p>
                         <div class="review-date">04 Σεπτεμβρίου 2025</div>
                     </div>
-
                     <div class="review-card">
                         <div class="review-header">
                             <div class="review-name">ΓΛΥΚΕΡΙΑ <span class="review-count">• 2 αξιολογήσεις</span></div>
@@ -608,7 +712,6 @@
                         <p class="review-text">"Το να ξεδιπλώνεις την ψυχή σου... Εδώ όμως, με την Ζωή, αισθάνεσαι πως είναι απόλυτα ασφαλές. Ήρεμη, γλυκιά, με ενσυναίσθηση. Η επιλογή της Ζωής, ίσως είναι μονόδρομος!"</p>
                         <div class="review-date">20 Ιουνίου 2025</div>
                     </div>
-
                     <div class="review-card">
                         <div class="review-header">
                             <div class="review-name">Εύα <span class="review-count">• 3 αξιολογήσεις</span></div>
@@ -617,7 +720,6 @@
                         <p class="review-text">"Πολύ ήρεμη και κατανοητική και μου έδωσε τον χώρο και τον χρόνο να ανοιχτώ και να εκφραστώ εμπνέοντάς μου ηρεμία και ασφάλεια!"</p>
                         <div class="review-date">23 Απριλίου 2025</div>
                     </div>
-
                     <div class="review-card">
                         <div class="review-header">
                             <div class="review-name">Μαργαρίτα <span class="review-count">• 1 αξιολόγηση</span></div>
@@ -626,7 +728,6 @@
                         <p class="review-text">"Η κυρία Ασμάνογλου είναι μια άρτια εκπαιδευμένη επιστήμονας που αντιμετώπισε με σοβαρότητα αλλά παράλληλα και ανθρωπιά τις δυσκολίες μου."</p>
                         <div class="review-date">26 Μαρτίου 2024</div>
                     </div>
-
                     <div class="review-card">
                         <div class="review-header">
                             <div class="review-name">Σηφης <span class="review-count">• 1 αξιολόγηση</span></div>
@@ -635,7 +736,6 @@
                         <p class="review-text">"Πήγα με το παιδί μου πρώτη φορά σε ψυχολογο ! Εμεινα απόλυτα ικανοποιημένος! Νομίζω βλέπω από τώρα διαφορά! Την συστήνω ανεπιφύλακτα!"</p>
                         <div class="review-date">07 Μαρτίου 2024</div>
                     </div>
-                    
                     <div class="review-card">
                         <div class="review-header">
                             <div class="review-name">Κωνσταντινος <span class="review-count">• 1 αξιολόγηση</span></div>
@@ -644,7 +744,6 @@
                         <p class="review-text">"Πραγματικά εξαιρετική επαγγελματίας ! Από την πρώτη στιγμή ένιωσα οτι βρίσκομαι σε ένα ασφαλές και εμπιστευτικό περιβάλλον."</p>
                         <div class="review-date">06 Μαρτίου 2024</div>
                     </div>
-                    
                     <div class="review-card">
                         <div class="review-header">
                             <div class="review-name">Pel <span class="review-count">• 1 αξιολόγηση</span></div>
@@ -658,7 +757,6 @@
         </div>
     </section>
 
-    <!-- Footer / Contact Section -->
     <footer class="footer-section" id="contact">
         <div class="container">
             <div class="footer-grid">
@@ -666,7 +764,7 @@
                 <div class="contact-info">
                     <h4>ΕΠΙΚΟΙΝΩΝΗΣΤΕ ΜΑΖΙ ΜΟΥ</h4>
                     <h2>Είμαι εδώ για εσάς.</h2>
-                    <p>Επικοινωνήστε για οποιαδήποτε απορία ή για να κλείσουμε το πρώτο μας ραντεβού.</p>
+                    <p>«Για πληροφορίες ή ραντεβού μπορείτε να επικοινωνήσετε μαζί μου. Η επικοινωνία μπορεί να είναι το πρώτο βήμα.»</p>
                     
                     <div class="contact-details">
                         <p>
@@ -703,13 +801,30 @@
         </div>
     </footer>
 
-    <!-- JavaScript to enable seamless vertical scrolling of reviews -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Logic for the infinite vertical scrolling of reviews
             const track = document.getElementById('reviews-track');
-            // Duplicate the content to ensure seamless infinite scrolling loop
-            const content = track.innerHTML;
-            track.innerHTML = content + content;
+            if (track) {
+                const content = track.innerHTML;
+                track.innerHTML = content + content; // duplicate for seamless loop
+            }
+
+            // Logic for toggling the detailed bio CV
+            const toggleBioBtn = document.getElementById('toggleBioBtn');
+            const detailedBio = document.getElementById('detailed-bio');
+            
+            if (toggleBioBtn && detailedBio) {
+                toggleBioBtn.addEventListener('click', function() {
+                    if (detailedBio.style.display === 'none' || detailedBio.style.display === '') {
+                        detailedBio.style.display = 'block';
+                        this.textContent = 'λιγότερα';
+                    } else {
+                        detailedBio.style.display = 'none';
+                        this.textContent = 'περισσότερα';
+                    }
+                });
+            }
         });
     </script>
 </body>
